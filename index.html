@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mine Mine Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1 class="game-title">MINE MINE</h1>
+        <div class="score-panel">
+            <h3>Level: <span id="level">1</span></h3>
+            <h3>Score: <span id="score">0</span></h3>
+            <h3>Lives: <span id="lives">3</span></h3>
+            <button id="restart-btn">Restart Game</button>
+        </div>
+        <div class="grid"></div>
+        <div id="game-over" class="hidden">
+            <h2>Game Over!</h2>
+            <p>Final Score: <span id="final-score">0</span></p>
+        </div>
+        <div id="win-message" class="hidden">
+            <h2>You Win!</h2>
+            <p>Final Score: <span id="win-score">0</span></p>
+            <p>All Levels Completed!</p>
+        </div>
+        <div id="level-complete" class="hidden">
+            <h2>Level Complete!</h2>
+            <p>Get Ready for Level <span id="next-level">2</span></p>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
