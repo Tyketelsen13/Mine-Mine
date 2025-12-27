@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mine Mine Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main game container -->
+    <div class="game-container">
+        <!-- Game title with glowing animation -->
+        <h1 class="game-title">MINE MINE</h1>
+        
+        <!-- Score panel displaying current game stats -->
+        <div class="score-panel">
+            <h3>Level: <span id="level">1</span></h3>
+            <h3>Score: <span id="score">0</span></h3>
+            <h3>Lives: <span id="lives">3</span></h3>
+            <button id="restart-btn">Restart Game</button>
+        </div>
+        
+        <!-- Game grid - dynamically populated by JavaScript -->
+        <div class="grid"></div>
+        
+        <!-- Game over overlay (hidden by default) -->
+        <div id="game-over" class="hidden">
+            <h2>Game Over!</h2>
+            <p>Final Score: <span id="final-score">0</span></p>
+        </div>
+        
+        <!-- Victory overlay (hidden by default) -->
+        <div id="win-message" class="hidden">
+            <h2>You Win!</h2>
+            <p>Final Score: <span id="win-score">0</span></p>
+            <p>All Levels Completed!</p>
+        </div>
+        
+        <!-- Level complete overlay (hidden by default) -->
+        <div id="level-complete" class="hidden">
+            <h2>Level Complete!</h2>
+            <p>Get Ready for Level <span id="next-level">2</span></p>
+        </div>
+    </div>
+    
+    <!-- Game logic -->
+    <script src="app.js"></script>
+</body>
+</html>

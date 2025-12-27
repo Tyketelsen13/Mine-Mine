@@ -1,0 +1,299 @@
+/* ========================================
+   GLOBAL STYLES
+   ======================================== */
+
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body: Center game on screen with dark gradient background */
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+}
+
+/* ========================================
+   GAME CONTAINER
+   ======================================== */
+
+/* Main container wrapping entire game */
+.game-container {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+
+/* Game title with glowing lime green effect */
+.game-title {
+    font-size: 64px;
+    font-weight: bold;
+    color: #00ff00;
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.8),
+                 0 0 40px rgba(0, 255, 0, 0.6),
+                 0 0 60px rgba(0, 255, 0, 0.4);
+    margin-bottom: 20px;
+    letter-spacing: 8px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* Pulsing glow animation for title */
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px rgba(0, 255, 0, 0.8),
+                     0 0 40px rgba(0, 255, 0, 0.6),
+                     0 0 60px rgba(0, 255, 0, 0.4);
+    }
+    to {
+        text-shadow: 0 0 30px rgba(0, 255, 0, 1),
+                     0 0 60px rgba(0, 255, 0, 0.8),
+                     0 0 90px rgba(0, 255, 0, 0.6);
+    }
+}
+
+/* ========================================
+   SCORE PANEL
+   ======================================== */
+
+/* Display level, score, lives and restart button */
+.score-panel {
+    background: rgba(0, 0, 0, 0.9);
+    color: #00ff00;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+/* Score panel text styling */
+.score-panel h3 {
+    margin: 0 15px;
+    font-size: 20px;
+}
+
+/* Restart button styling */
+#restart-btn {
+    background: #00ff00;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+/* Restart button hover effect - scales up */
+#restart-btn:hover {
+    transform: scale(1.1);
+    background: #00cc00;
+}
+
+/* ========================================
+   GAME GRID
+   ======================================== */
+
+/* Main game grid - 28x28 cells (20px each + 8px for borders) */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 568px;
+    height: 568px;
+    border: 4px solid #00ff00;
+    background: #000;
+    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1);
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* Individual grid cells */
+.grid div {
+    width: 20px;
+    height: 20px;
+    border: none;
+    flex-shrink: 0;
+}
+
+/* ========================================
+   GAME ELEMENTS
+   ======================================== */
+
+/* Pac-dot (small white dots to collect) */
+.pac-dot {
+    background: #000;
+    position: relative;
+}
+
+/* White dot displayed using CSS ::after pseudo-element */
+.pac-dot::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Power pellet (large dots that make ghosts vulnerable) */
+.power-pellet {
+    background: black;
+    position: relative;
+}
+
+/* Larger pulsing white dot */
+.power-pellet::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 0.5s infinite alternate;
+}
+
+/* Pulsing animation for power pellets */
+@keyframes pulse {
+    from {
+        opacity: 0.5;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Maze walls (lime green blocks) */
+.wall {
+    background: #00cc00;
+    border: none;
+    box-shadow: inset 0 0 3px rgba(0, 255, 0, 0.8);
+}
+
+/* Pacman (yellow circle) */
+.pacman {
+    background: #ffff00;
+    border-radius: 50%;
+    position: relative;
+}
+
+/* Pacman's mouth (black triangle) */
+.pacman::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ========================================
+   GHOSTS
+   ======================================== */
+
+/* Base ghost styling with rounded top */
+.ghost {
+    background: #ff0000;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+}
+
+/* Ghost's wavy bottom edge */
+.ghost::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(45deg, transparent 33.33%, #ff0000 33.33%, #ff0000 66.67%, transparent 66.67%);
+    background-size: 6px 100%;
+}
+
+/* Individual ghost colors */
+/* Blinky - Red ghost */
+.blinky {
+    background: #ff0000;
+}
+
+/* Pinky - Pink ghost */
+.pinky {
+    background: #ffb8ff;
+}
+
+/* Inky - Cyan ghost */
+.inky {
+    background: #00ffff;
+}
+
+/* Clyde - Orange ghost */
+.clyde {
+    background: #ffb852;
+}
+
+/* Scared ghost state (blue when vulnerable after power pellet) */
+.scared-ghost {
+    background: #0000ff !important;
+}
+
+/* Scared ghost wavy bottom edge */
+.scared-ghost::after {
+    background: linear-gradient(45deg, transparent 33.33%, #0000ff 33.33%, #0000ff 66.67%, transparent 66.67%) !important;
+}
+
+/* ========================================
+   OVERLAY MESSAGES
+   ======================================== */
+
+/* Game over, win, and level complete overlays */
+#game-over, #win-message, #level-complete {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    color: #00ff00;
+    padding: 40px;
+    border-radius: 15px;
+    border: 3px solid #00ff00;
+    z-index: 1000;
+    box-shadow: 0 0 40px rgba(0, 255, 0, 0.5);
+}
+
+/* Overlay message headings */
+#game-over h2, #win-message h2, #level-complete h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #00ff00;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+}
+
+/* Overlay message text */
+#game-over p, #win-message p {
+    font-size: 24px;
+}
+
+/* Hide elements by default */
+.hidden {
+    display: none;
+}
